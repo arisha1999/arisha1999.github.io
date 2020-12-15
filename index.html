@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tile Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="body">
+        <script src="game.js"></script>
+        <div class="menu">
+            <div class="about">
+                <h4>How to play this game?</h4>
+                <a>To start game press START NEW GAME.</a>
+                <a>To get help from bot for one level press START GAME BOT.</a>
+                <a>You can see your level, time left and tournament table.</a>
+                <a>You can get to tournament table only if you have not used bot to help you!</a>
+            </div>
+            <button type="button" class="button" onclick="newGame()"> START NEW GAME </button>
+            <div class="level_box">
+                <div>
+                    Your level:
+                </div>
+                <div id="level">
+                    0
+                </div>
+            </div>
+            <div class="time_box">
+                <div>
+                    Timer:
+                </div>
+                <div id="time">
+                    0
+                </div>
+            </div>
+            <button type="button" class="button" id = "botButton" onclick="startBot(0)"> START GAME BOT </button>
+            <div class="tournamentTable">
+
+            </div>
+        </div>
+        <div class="field">
+            <div class ="gameField" id="gameField">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
