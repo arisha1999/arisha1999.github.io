@@ -4,7 +4,7 @@ var gameField = document.getElementById("gameField");
 var interval;
 
 window.onload = function (){
-    if(localStorage.length!=0 && localStorage.getItem("x")!="NaN"){
+    if(localStorage.length>1 && (localStorage.getItem("x")!="NaN" && (localStorage.getItem("gameLost")!="NaN"||localStorage.getItem("gameLost")=="true"))){
         newGame();
         loadTournamentTable();
     }
@@ -20,6 +20,7 @@ window.onunload = function(){
 function newGame(){
     clearInterval(interval);
     if(localStorage.getItem("isUnloaded")!="true"){
+        localStorage.clear();
         var t = confirm("Do you want to start new game?!");
     }
     else {
@@ -57,12 +58,15 @@ function createGameField(level){
     }
     localStorage.setItem("isUnloaded","false");
     window.onunload = function(){
-        localStorage.setItem("level",level);
-        localStorage.setItem("x",x);
-        localStorage.setItem("y",y);
-        localStorage.setItem("field_color",field_color);
-        localStorage.setItem("main_color",main_color);
-        localStorage.setItem("isUnloaded","true");
+        if(localStorage.getItem("gameLost")!="true"){
+            localStorage.setItem("level",level);
+            localStorage.setItem("x",x);
+            localStorage.setItem("y",y);
+            localStorage.setItem("field_color",field_color);
+            localStorage.setItem("main_color",main_color);
+            localStorage.setItem("isUnloaded","true");
+            localStorage.setItem("gameLost","false");
+        }
     }
     document.getElementById("time").innerHTML = timer+'s';
     interval = setInterval(function (){timerWork(level)}, 1000);
@@ -139,9 +143,14 @@ function gameLost(level){
         startBot(0);
     };
     localStorage.clear();
+    localStorage.setItem("gameLost","true");
     clearInterval(interval);
 }
 
 function loadTournamentTable(){
+
+}
+
+function addToTournamentTable(){
 
 }
